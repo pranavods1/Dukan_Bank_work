@@ -18,8 +18,8 @@ class UserRepositoryImpl implements UserRepository {
 
     // 2. കവറിനുള്ളിൽ എറർ ഉണ്ടെങ്കിൽ അത് Left വഴി Notifier-ലേക്ക് അയക്കുന്നു
     if (!env.ok || env.data == null) {
-      // ഡാറ്റാസോഴ്സിൽ എറർ ഉണ്ടെങ്കിൽ അത് കൊടുക്കുന്നു, അല്ലെങ്കിൽ ഒരു ഡിഫോൾട്ട് എറർ
-      return left(env.error ?? const ApiError(description: 'ഡാറ്റ ലഭിച്ചില്ല!'));
+      // If there is an error in datasource, return it, otherwise a default error
+      return left(env.error ?? const ApiError(description: 'Failed to load user data.'));
     }
 
     // 3. കവറിനുള്ളിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ അതിലെ ഓരോ UserDto-യെയും UserEntity ആക്കി മാറ്റുന്നു

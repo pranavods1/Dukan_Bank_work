@@ -17,18 +17,18 @@ class UserDatasource {
 
       if (response.statusCode == 200) {
         final dtoList = UserResponseDto.fromJson(response.data);
-        return ApiEnvelope.success(dtoList); // സക്സസ്സ് കവർ അയക്കുന്നു
+        return ApiEnvelope.success(dtoList); // send success envelope
       } else {
         return ApiEnvelope.failure(ApiError(
           code: response.statusCode.toString(),
-          description: 'സെർവർ തകരാറിലാണ്!',
-        )); // സർവർ എറർ കവർ
+          description: 'Server error occurred. Please try again later.',
+        )); // server error envelope
       }
     } catch (e) {
       return ApiEnvelope.failure(ApiError(
         code: 'NETWORK_ERROR',
-        description: 'നെറ്റ്‌വർക്ക് കണക്ഷൻ പരിശോധിക്കുക!',
-      )); // നെറ്റ്‌വർക്ക് എറർ കവർ
+        description: 'Failed to connect to the internet. Please check your network.',
+      )); // network error envelope
     }
   }
 }
