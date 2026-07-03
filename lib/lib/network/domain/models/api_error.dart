@@ -1,0 +1,26 @@
+// lib/network/domain/models/api_error.dart
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'api_error.freezed.dart';
+part 'api_error.g.dart';
+
+@freezed
+class ApiError with _$ApiError {
+  const factory ApiError({
+    dynamic code,          // ഉദാഹരണത്തിന്: '500', '404', 'ERR_CONN'
+    String? description,   // മെയിൻ എറർ മെസ്സേജ്
+    String? mwCode,        // മിഡിൽവെയർ എറർ കോഡ് (ഉണ്ടെങ്കിൽ)
+    String? mwdesc,        // മിഡിൽവെയർ തരുന്ന എറർ വിവരണം
+  }) = _ApiError;
+
+  factory ApiError.fromJson(Map<String, dynamic> json) => _$ApiErrorFromJson(json);
+
+  const ApiError._();
+
+  // സക്സസ്സ് കോഡുകൾ ആണോ എന്ന് നോക്കാൻ (പൂജ്യം ആണെങ്കിൽ സക്സസ്സ് ആണ്)
+  bool get ok => code == '0000' || code == '000000' || code == '200';
+
+  @override
+  String toString() => description ?? mwdesc ?? 'എന്തോ തകരാർ സംഭവിച്ചു!';
+}
