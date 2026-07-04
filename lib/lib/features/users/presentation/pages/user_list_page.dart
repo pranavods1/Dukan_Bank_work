@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/router/app_router.gr.dart';
 import '../../../../core/widgets/common_loader.dart';
 import '../../domain/entities/user.dart';
 import '../controller/user_notifier.dart';
@@ -49,6 +50,9 @@ class _UserListPageState extends ConsumerState<UserListPage> {
               itemBuilder: (context, index) {
                 final user = users[index];
                 return ListTile(
+                  onTap: () {
+                    context.router.push(UserDetailRoute(userId: user.id));
+                  },
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(user.imageUrl),
                   ),

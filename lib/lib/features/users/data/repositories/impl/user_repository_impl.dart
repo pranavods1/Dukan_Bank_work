@@ -3,8 +3,10 @@
 import 'package:dartz/dartz.dart';
 import '../../../../../network/domain/models/api_error.dart';
 import '../../../domain/entities/user.dart';
+import '../../../domain/entities/user_detail.dart';
 import '../../../domain/repositories/user_repository.dart';
 import '../../datasource/user_datasource.dart';
+import '../../models/user_detail_dto.dart';
 import '../../models/user_dto.dart';
 
 class UserRepositoryImpl implements UserRepository {
@@ -29,4 +31,17 @@ class UserRepositoryImpl implements UserRepository {
     // 4. വിജയകരമായി ബിരിയാണി പ്ലേറ്റ് (Entity List) Right വഴി Notifier-ലേക്ക് അയക്കുന്നു
     return right(userEntities);
   }
+
+  @override
+  Future<Either<ApiError, UserDetailEntity>> fetchUserDetails(int userId) async {
+    // ഡാറ്റാസോഴ്സിൽ നിന്നും കവർ വാങ്ങുന്നു
+    final env = await datasource.getUserDetails(userId);
+    // കവറിനുള്ളിൽ എറർ ഉണ്ടെങ്കിൽ അത് ഇടതുവശത്തേക്ക് അയക്കുന്നു
+    if (!env.ok || env.data == null) {
+      return left(env.error ?? const ApiError(description: 'Failed to load user details.'));
+    }
+    // ഡാറ്റ ഉണ്ടെങ്കിൽ അതിനെ Entity രൂപത്തിലേക്ക് മാറ്റി വലതുവശത്തേക്ക് അയക്കുന്നു
+    return right(env.data!.toEntity());
+  }
+
 }
