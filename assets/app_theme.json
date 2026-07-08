@@ -1,0 +1,14 @@
+{
+  "light": {
+    "brandColor": "#004F9F",
+    "backgroundColor": "#F4F6F9",
+    "cardColor": "#FFFFFF",
+    "textColor": "#555555"
+  },
+  "dark": {
+    "brandColor": "#FFB800",
+    "backgroundColor": "#121212",
+    "cardColor": "#1E1E1E",
+    "textColor": "#2ECC71"
+  }
+}
