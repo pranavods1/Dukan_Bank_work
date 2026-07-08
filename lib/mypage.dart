@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart'; // 1. ഇത് ഇമ്പോർട്ട് ചെയ്യുക
 import 'package:flutter/material.dart';
 
-import 'lib/core/router/app_router.gr.dart';
+import 'core/router/app_router.gr.dart';
+
 
 @RoutePage() // 2. ഈ അനോട്ടേഷൻ ചേർക്കുക
 class MyPage extends StatefulWidget {

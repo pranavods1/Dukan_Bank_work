@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'lib/core/router/app_router.dart';
-import 'lib/core/router/observers/screen_tracking_observer.dart';
-import 'lib/core/widgets/theme_provider.dart';
+import 'core/router/app_router.dart';
+import 'core/router/observers/screen_tracking_observer.dart';
+import 'core/widgets/theme_provider.dart';
+
 
 void main() {
   runApp(ProviderScope(child: MyApp()));

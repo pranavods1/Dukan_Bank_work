@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/router/app_router.gr.dart';
 import '../../../../core/widgets/common_loader.dart';
 import '../../../../core/widgets/theme_provider.dart'; // ➔ 1. തീം പ്രൊവൈഡർ ഇമ്പോർട്ട് ചെയ്തു
+import '../../../auth/presentation/controller/auth_notifier.dart';
 import '../../domain/entities/user.dart';
 import '../controller/user_notifier.dart';
 
@@ -29,6 +30,18 @@ class _UserListPageState extends ConsumerState<UserListPage> {
   @override
   Widget build(BuildContext context) {
     final state = ref.watch(userNotifierProvider);
+// user_list_page.dart ഫയലിലെ build ഫംഗ്ഷനിൽ ചേർക്കേണ്ടത്:
+
+    // ➔ യൂസർ ലോഗൗട്ട് ആയാൽ ഓട്ടോമാറ്റിക് ആയി ലോഗിൻ സ്ക്രീനിലേക്ക് തിരികെ അയക്കുന്നു
+    ref.listen(authNotifierProvider, (previous, next) {
+      next.whenOrNull(
+        data: (tokens) {
+          if (tokens == null) {
+            context.router.replaceAll([const LoginRoute()]);
+          }
+        },
+      );
+    });
 
     return Scaffold(
       backgroundColor: context.background, // ➔ 2. പേജിന്റെ കസ്റ്റം പശ്ചാത്തല നിറം നൽകുന്നു
@@ -57,7 +70,14 @@ class _UserListPageState extends ConsumerState<UserListPage> {
               ref.read(themeModeProvider.notifier).state =
               currentMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
             },
-          )
+          ),
+          IconButton(
+            icon: const Icon(Icons.logout,color: Colors.red,),
+            onPressed: () {
+              // നോട്ടിഫയറിലെ ലോഗൗട്ട് ഫംഗ്ഷനെ വിളിക്കുന്നു
+              ref.read(authNotifierProvider.notifier).logout();
+            },
+          ),
         ],
       ),
       body: CommonLoader<List<UserEntity>>(

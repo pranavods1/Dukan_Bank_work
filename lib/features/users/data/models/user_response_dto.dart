@@ -1,7 +1,7 @@
 // lib/features/users/data/models/user_response_dto.dart
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import './user_dto.dart'; // UserDto ഇമ്പോർട്ട് ചെയ്യുന്നു
+import 'user_dto.dart'; // UserDto ഇമ്പോർട്ട് ചെയ്യുന്നു
 
 part 'user_response_dto.freezed.dart';
 part 'user_response_dto.g.dart';
