@@ -1,5 +1,3 @@
-// lib/lib/features/auth/domain/entities/user_profile_details.dart
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_profile_details.freezed.dart';

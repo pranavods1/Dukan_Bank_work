@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../../core/service/secure_storage_service.dart';
 import '../../../../../network/domain/models/api_error.dart';
 import '../../../../../network/domain/models/auth_tokens.dart';
-import '../../../domain/entities/user_profile_details.dart';
+import '../../../../profile/domain/entities/user_profile_details.dart';
 import '../../../domain/repositories/auth_repository.dart';
 import '../../datasource/auth_datasource.dart';
 import '../../model/auth_dto.dart';

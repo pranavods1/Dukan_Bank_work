@@ -48,8 +48,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       next.whenOrNull(
         data: (tokens) {
           if (tokens != null) {
-            // വിജയകരമായി ലോഗിൻ ചെയ്താൽ യൂസർ ലിസ്റ്റ് പേജിലേക്ക് പോകുന്നു
-            context.router.replaceAll([const UserListRoute()]);
+            // വിജയകരമായി ലോഗിൻ ചെയ്താൽ ഹോം ഡാഷ്‌ബോർഡിലേക്ക് പോകുന്നു
+            context.router.replaceAll([const HomeRoute()]);
           }
         },
         error: (error, _) {

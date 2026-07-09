@@ -3,7 +3,7 @@
 import 'package:dartz/dartz.dart';
 import '../../../../network/domain/models/api_error.dart';
 import '../../../../network/domain/models/auth_tokens.dart';
-import '../entities/user_profile_details.dart';
+import '../../../profile/domain/entities/user_profile_details.dart';
 
 abstract class AuthRepository {
   // ➔ 1. ലോഗിൻ ചെയ്യാനുള്ള ഫംഗ്ഷൻ (വിജയകരമായാൽ AuthTokens തരും)

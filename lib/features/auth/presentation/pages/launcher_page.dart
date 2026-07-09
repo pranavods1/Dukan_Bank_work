@@ -21,8 +21,8 @@ class LauncherPage extends ConsumerWidget {
         data: (tokens) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (tokens != null) {
-              // ➔ ടോക്കൺ ഉണ്ടെങ്കിൽ ലോഗിൻ ഒഴിവാക്കി നേരിട്ട് ലിസ്റ്റ് പേജിലേക്ക് പോകുന്നു!
-              context.router.replaceAll([const UserListRoute()]);
+              // ➔ ടോക്കൺ ഉണ്ടെങ്കിൽ ലോഗിൻ ഒഴിവാക്കി നേരിട്ട് ഹോം ഡാഷ്‌ബോർഡിലേക്ക് പോകുന്നു!
+              context.router.replaceAll([const HomeRoute()]);
             } else {
               // ➔ ടോക്കൺ ഇല്ലെങ്കിൽ ലോഗിൻ സ്ക്രീനിലേക്ക് കൊണ്ടുപോകുന്നു
               context.router.replaceAll([const LoginRoute()]);
